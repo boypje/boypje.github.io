@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primula Juventauricula | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cyan: {
-                            400: '#22d3ee',
-                            500: '#06b6d4',
-                            glow: '#00f3ff',
-                        },
-                        dark: {
-                            bg: '#050505',
-                            card: '#0f1014',
-                            border: '#1e293b'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        tech: ['Orbitron', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'neon': '0 0 5px theme("colors.cyan.500"), 0 0 20px theme("colors.cyan.500")',
-                        'neon-hover': '0 0 10px theme("colors.cyan.400"), 0 0 40px theme("colors.cyan.400")',
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
-                    }
-                }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cyan: {
+                400: '#22d3ee',
+                500: '#06b6d4',
+                glow: '#00f3ff',
+              },
+              dark: {
+                bg: '#050505',
+                card: '#0f1014',
+                border: '#1e293b'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              tech: ['Orbitron', 'sans-serif'],
+            },
+            boxShadow: {
+              'neon': '0 0 5px theme("colors.cyan.500"), 0 0 20px theme("colors.cyan.500")',
+              'neon-hover': '0 0 10px theme("colors.cyan.400"), 0 0 40px theme("colors.cyan.400")',
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': {
+                  transform: 'translateY(0)'
+                },
+                '50%': {
+                  transform: 'translateY(-20px)'
+                },
+              }
             }
+          }
         }
+      }
     </script>
     <style>
-    body {
+      body {
         background-color: #050505;
         color: #e2e8f0;
         overflow-x: hidden;
         position: relative;
-    }
-    
-    /* Canvas Background */
-    #bg-canvas {
+      }
+
+      /* Canvas Background */
+      #bg-canvas {
         position: fixed;
         top: 0;
         left: 0;
@@ -63,36 +66,39 @@
         height: 100%;
         z-index: -1;
         opacity: 0.4;
-    }
+      }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
         width: 8px;
-    }
-    ::-webkit-scrollbar-track {
+      }
+
+      ::-webkit-scrollbar-track {
         background: #0f1014;
-    }
-    ::-webkit-scrollbar-thumb {
+      }
+
+      ::-webkit-scrollbar-thumb {
         background: #06b6d4;
         border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #22d3ee;
-    }
+      }
 
-    .text-glow {
+      ::-webkit-scrollbar-thumb:hover {
+        background: #22d3ee;
+      }
+
+      .text-glow {
         text-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
-    }
-    
-    .glass-card {
+      }
+
+      .glass-card {
         background: rgba(15, 16, 20, 0.6);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(34, 211, 238, 0.1);
         transition: all 0.3s ease;
-    }
+      }
 
-    .img-placeholder {
+      .img-placeholder {
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         display: flex;
         align-items: center;
@@ -100,1295 +106,937 @@
         color: #38bdf8;
         overflow: hidden;
         position: relative;
-    }
-    
-    .project-list li {
+      }
+
+      .project-list li {
         position: relative;
         padding-left: 1.25rem;
         margin-bottom: 0.5rem;
-    }
-    .project-list li::before {
+      }
+
+      .project-list li::before {
         content: "▹";
         position: absolute;
         left: 0;
         color: #22d3ee;
-    }
+      }
 
-    /* Reveal Animation Classes */
-    .reveal {
+      /* Reveal Animation Classes */
+      .reveal {
         opacity: 0;
         transform: translateY(30px);
         transition: all 0.8s ease-out;
-    }
-    .reveal.active {
+      }
+
+      .reveal.active {
         opacity: 1;
         transform: translateY(0);
-    }
+      }
 
-    /* Typewriter Cursor */
-    .cursor {
+      /* Typewriter Cursor */
+      .cursor {
         display: inline-block;
         width: 3px;
         background-color: #22d3ee;
         animation: blink 1s infinite;
-    }
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
+      }
 
-    /* 3D Tilt Effect Container */
-    .tilt-card {
+      @keyframes blink {
+
+        0%,
+        100% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* 3D Tilt Effect Container */
+      .tilt-card {
         transform-style: preserve-3d;
         transform: perspective(1000px);
-    }
+      }
     </style>
-</head>
-<body class="antialiased selection:bg-cyan-500 selection:text-black">
-
+  </head>
+  <body class="antialiased selection:bg-cyan-500 selection:text-black">
     <!-- Interactive Canvas Background -->
     <canvas id="bg-canvas"></canvas>
-
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-card border-b border-white/10 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 font-tech text-xl font-bold tracking-wider text-cyan-400 cursor-pointer hover:text-white transition-colors">
-                    PJ<span class="text-white">.DEV</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8" id="desktop-menu">
-                        <a href="#home" class="nav-link hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium relative group">
-                            Home
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a href="#about" class="nav-link hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium relative group">
-                            About
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a href="#experience" class="nav-link hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium relative group">
-                            Experience
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a href="#projects" class="nav-link hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium relative group">
-                            Projects
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                        <a href="#contact" class="px-4 py-2 rounded-full border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black transition-all duration-300 shadow-[0_0_10px_rgba(6,182,212,0.3)] hover:shadow-neon transform hover:scale-105">Contact Me</a>
-                    </div>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
-                        <i data-lucide="menu" class="w-8 h-8"></i>
-                    </button>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex-shrink-0 font-tech text-xl font-bold tracking-wider text-cyan-400 cursor-pointer hover:text-white transition-colors"> BOYPJE <span class="text-white">.DEV</span>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8" id="desktop-menu">
+              <a href="#home" class="nav-link hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium relative group"> Home <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#about" class="nav-link hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium relative group"> About <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#experience" class="nav-link hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium relative group"> Experience <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#projects" class="nav-link hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium relative group"> Projects <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#contact" class="px-4 py-2 rounded-full border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black transition-all duration-300 shadow-[0_0_10px_rgba(6,182,212,0.3)] hover:shadow-neon transform hover:scale-105">Contact Me</a>
             </div>
+          </div>
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+              <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+          </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-dark-card border-b border-white/10 absolute w-full left-0 glass-card">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="mobile-link text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#about" class="mobile-link text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="#experience" class="mobile-link text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">Experience</a>
-                <a href="#projects" class="mobile-link text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-                <a href="#contact" class="mobile-link text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
-            </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-dark-card border-b border-white/10 absolute w-full left-0 glass-card">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="#home" class="mobile-link text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+          <a href="#about" class="mobile-link text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">About</a>
+          <a href="#experience" class="mobile-link text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+          <a href="#projects" class="mobile-link text-gray-300 hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+          <a href="#contact" class="mobile-link text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
         </div>
+      </div>
     </nav>
-
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative pt-16 section-spy">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="order-2 md:order-1 space-y-6 reveal">
-                <div class="inline-block px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-tech tracking-wider mb-2">
-                    <span id="typewriter"></span><span class="cursor">|</span>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight">
-                    Hello, I'm <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-glow animate-gradient">Primula</span>
-                </h1>
-                <p class="text-xl text-gray-400 max-w-lg">
-                    Focusing on full-stack web development and data engineering with AI automation to build scalable solutions.
-                </p>
-                <div class="flex gap-4 pt-4">
-                    <a href="#projects" class="group relative px-8 py-3 rounded-md bg-cyan-600 text-white font-semibold overflow-hidden transition-all shadow-lg hover:shadow-neon">
-                        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
-                        View Portfolio
-                    </a>
-                    <a href="#contact" class="px-8 py-3 rounded-md border border-gray-600 hover:border-cyan-400 hover:text-cyan-400 transition-all hover:bg-cyan-900/10">
-                        Contact Me
-                    </a>
-                </div>
-                <div class="flex gap-4 pt-6 text-gray-400">
-                    <a href="https://instagram.com/boypje" class="hover:text-cyan-400 transition-colors transform hover:scale-110"><i data-lucide="instagram"></i></a>
-                    <a href="www.linkedin.com/in/primulajuve" class="hover:text-cyan-400 transition-colors transform hover:scale-110"><i data-lucide="linkedin"></i></a>
-                    <a href="https://github.com/boypje" class="hover:text-cyan-400 transition-colors transform hover:scale-110"><i data-lucide="github"></i></a>
-                </div>
-            </div>
-            
-            <div class="order-1 md:order-2 flex justify-center relative reveal delay-200">
-                <!-- Circular Profile Placeholder with Glow -->
-                <div class="relative w-64 h-64 md:w-96 md:h-96">
-                    <div class="absolute inset-0 bg-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse-slow"></div>
-                    <div class="relative w-full h-full rounded-full border-2 border-cyan-500/50 shadow-neon overflow-hidden img-placeholder animate-float bg-dark-bg z-10">
-                        <!-- Replace with real image -->
-                         <img src="assets/profile_photo.PNG" class="w-full h-full object-cover">
-                        <!-- <div class="text-center p-4">
-                            <i data-lucide="user" class="w-24 h-24 mx-auto mb-2 opacity-50"></i>
-                            <span class="text-sm font-tech opacity-70">PROFILE PHOTO</span>
-                        </div> -->
-                    </div>
-                    <!-- Decorative Orbit elements -->
-                    <div class="absolute -inset-8 border border-cyan-500/20 rounded-full w-[130%] h-[130%] top-[-15%] left-[-15%] animate-[spin_15s_linear_infinite] border-dashed"></div>
-                    <div class="absolute -inset-4 border border-blue-500/30 rounded-full w-[110%] h-[110%] top-[-5%] left-[-5%] animate-[spin_10s_linear_infinite_reverse]"></div>
-                </div>
-            </div>
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-24 md:pt-16 section-spy">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div class="order-2 md:order-1 space-y-6 reveal">
+          <div class="inline-block px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-tech tracking-wider mb-2">
+            <span id="typewriter"></span>
+            <span class="cursor">|</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight"> Hello, I'm <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-glow animate-gradient">Primula</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-400 max-w-lg"> Focusing on full-stack web development and data engineering with AI automation to build scalable solutions. </p>
+          <div class="flex gap-4 pt-4">
+            <a href="#projects" class="group relative px-6 md:px-8 py-3 rounded-md bg-cyan-600 text-white font-semibold overflow-hidden transition-all shadow-lg hover:shadow-neon text-sm md:text-base">
+              <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span> View Portfolio </a>
+            <a href="#contact" class="px-6 md:px-8 py-3 rounded-md border border-gray-600 hover:border-cyan-400 hover:text-cyan-400 transition-all hover:bg-cyan-900/10 text-sm md:text-base"> Contact Me </a>
+          </div>
+          <div class="flex gap-4 pt-6 text-gray-400">
+            <a href="https://instagram.com/boypje" class="hover:text-cyan-400 transition-colors transform hover:scale-110">
+              <i data-lucide="instagram"></i>
+            </a>
+            <a href="www.linkedin.com/in/primulajuve" class="hover:text-cyan-400 transition-colors transform hover:scale-110">
+              <i data-lucide="linkedin"></i>
+            </a>
+            <a href="https://github.com/boypje" class="hover:text-cyan-400 transition-colors transform hover:scale-110">
+              <i data-lucide="github"></i>
+            </a>
+          </div>
         </div>
-        
-        <!-- Scroll Down Indicator -->
-        <a href="#about" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-cyan-400/50 hover:text-cyan-400 transition-colors">
-            <i data-lucide="chevron-down" class="w-8 h-8"></i>
-        </a>
+        <div class="order-1 md:order-2 flex justify-center relative reveal delay-200">
+          <!-- Circular Profile with responsive sizing -->
+          <div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+            <div class="absolute inset-0 bg-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse-slow"></div>
+            <div class="relative w-full h-full rounded-full border-2 border-cyan-500/50 shadow-neon overflow-hidden img-placeholder animate-float bg-dark-bg z-10">
+              <img src="assets/profile_photo.PNG" class="w-full h-full object-cover">
+            </div>
+            <!-- Decorative Orbit elements -->
+            <div class="absolute -inset-8 border border-cyan-500/20 rounded-full w-[130%] h-[130%] top-[-15%] left-[-15%] animate-[spin_15s_linear_infinite] border-dashed"></div>
+            <div class="absolute -inset-4 border border-blue-500/30 rounded-full w-[110%] h-[110%] top-[-5%] left-[-5%] animate-[spin_10s_linear_infinite_reverse]"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Scroll Down Indicator -->
+      <a href="#about" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-cyan-400/50 hover:text-cyan-400 transition-colors">
+        <i data-lucide="chevron-down" class="w-8 h-8"></i>
+      </a>
     </section>
-
     <!-- About Section -->
     <section id="about" class="py-20 bg-dark-card/50 border-y border-white/5 backdrop-blur-sm section-spy">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold font-tech mb-4"><span class="text-cyan-400">About</span> Me</h2>
-                <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full shadow-neon"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="space-y-6 reveal delay-100">
-                    <h3 class="text-2xl font-semibold text-white">Who Am I?</h3>
-                    <p class="text-gray-400 leading-relaxed text-justify">
-                        I'm an intermediate-level programmer with comprehensive expertise in system development, server administration, and data warehouse engineering. I currently serve in public sector technology governance, with a strong focus on healthcare information systems (SIMRS) and Linux/Ubuntu server management.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed text-justify">
-                        My professional experience includes architecting scalable data solutions, managing production server environments, and implementing AI-driven workflow automation using tools such as n8n. I am also actively involved in applying automation and artificial intelligence to improve system reliability, efficiency, and development workflows.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed text-justify">
-                        I am passionate about leveraging technology to transform data into actionable business insights. My proven track record spans full-stack development, system administration, automated testing frameworks, and the creation of clear, comprehensive technical documentation.
-                    </p>
-                    <div class="pt-6">
-                        <h3 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                            <i data-lucide="graduation-cap" class="text-cyan-400"></i> Education
-                        </h3>
-                        <div class="bg-dark-bg p-6 rounded-lg border border-white/10 hover:border-cyan-500/50 transition-all hover:shadow-neon hover:-translate-y-1">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h4 class="text-lg font-bold text-white">Brawijaya University</h4>
-                                    <p class="text-cyan-400">Bachelor of Computer Science</p>
-                                </div>
-                                <span class="text-sm text-gray-500 bg-gray-800 px-3 py-1 rounded-full">2020 - 2024</span>
-                            </div>
-                            <p class="mt-2 text-gray-400 text-sm">GPA: 3.72/4.00 | Malang, East Java</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6 reveal delay-200">
-                <h3 class="text-2xl font-semibold text-white">Soft Skills & Leadership</h3>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-                    <!-- Public Speaking -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="mic" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Public Speaking</h4>
-                    <p class="text-xs text-gray-500">
-                        Webinar speaker & technical trainer (200+ participants)
-                    </p>
-                    </div>
-
-                    <!-- Leadership -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="users" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Leadership</h4>
-                    <p class="text-xs text-gray-500">
-                        Vice Chairman & project team coordinator
-                    </p>
-                    </div>
-
-                    <!-- Project Management -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="clipboard-check" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Project Management</h4>
-                    <p class="text-xs text-gray-500">
-                        Waterfall methodology, timeline & documentation control
-                    </p>
-                    </div>
-
-                    <!-- Critical Thinking -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="brain-circuit" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Critical Thinking</h4>
-                    <p class="text-xs text-gray-500">
-                        Analytical problem solving & strategic decision making
-                    </p>
-                    </div>
-
-                    <!-- Communication -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="messages-square" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Communication</h4>
-                    <p class="text-xs text-gray-500">
-                        Cross-team collaboration & stakeholder communication
-                    </p>
-                    </div>
-
-                    <!-- Mentoring -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="graduation-cap" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Mentoring</h4>
-                    <p class="text-xs text-gray-500">
-                        Lecture assistant & junior team guidance
-                    </p>
-                    </div>
-
-                    <!-- Time Management -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="clock" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Time Management</h4>
-                    <p class="text-xs text-gray-500">
-                        Multi-project handling with strict deadlines
-                    </p>
-                    </div>
-
-                    <!-- Adaptability -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="refresh-cw" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Adaptability</h4>
-                    <p class="text-xs text-gray-500">
-                        Fast learner & adaptive to new technologies
-                    </p>
-                    </div>
-
-                    <!-- Achievements -->
-                    <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
-                    <i data-lucide="award" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
-                    <h4 class="font-bold group-hover:text-cyan-300">Achievements</h4>
-                    <p class="text-xs text-gray-500">
-                        1st Place Icon Design – Ministry of Religious Affairs
-                    </p>
-                    </div>
-
-                </div>
-                </div>
-
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-3xl md:text-4xl font-bold font-tech mb-4">
+            <span class="text-cyan-400">About</span> Me
+          </h2>
+          <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full shadow-neon"></div>
         </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="space-y-6 reveal delay-100">
+            <h3 class="text-2xl font-semibold text-white">Who Am I?</h3>
+            <p class="text-gray-400 leading-relaxed text-justify"> I'm an intermediate-level programmer with comprehensive expertise in system development, server administration, and data warehouse engineering. I currently serve in public sector technology governance, with a strong focus on healthcare information systems (SIMRS) and Linux/Ubuntu server management. </p>
+            <p class="text-gray-400 leading-relaxed text-justify"> My professional experience includes architecting scalable data solutions, managing production server environments, and implementing AI-driven workflow automation using tools such as n8n. I am also actively involved in applying automation and artificial intelligence to improve system reliability, efficiency, and development workflows. </p>
+            <p class="text-gray-400 leading-relaxed text-justify"> I am passionate about leveraging technology to transform data into actionable business insights. My proven track record spans full-stack development, system administration, automated testing frameworks, and the creation of clear, comprehensive technical documentation. </p>
+            <div class="pt-6">
+              <h3 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="text-cyan-400"></i> Education
+              </h3>
+              <div class="bg-dark-bg p-6 rounded-lg border border-white/10 hover:border-cyan-500/50 transition-all hover:shadow-neon hover:-translate-y-1">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h4 class="text-lg font-bold text-white">Brawijaya University</h4>
+                    <p class="text-cyan-400">Bachelor of Computer Science</p>
+                  </div>
+                  <span class="text-sm text-gray-500 bg-gray-800 px-3 py-1 rounded-full">2020 - 2024</span>
+                </div>
+                <p class="mt-2 text-gray-400 text-sm">GPA: 3.72/4.00 | Malang, East Java</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-6 reveal delay-200">
+            <h3 class="text-2xl font-semibold text-white">Soft Skills & Leadership</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <!-- Public Speaking -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="mic" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Public Speaking</h4>
+                <p class="text-xs text-gray-500"> Webinar speaker & technical trainer (200+ participants) </p>
+              </div>
+              <!-- Leadership -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="users" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Leadership</h4>
+                <p class="text-xs text-gray-500"> Vice Chairman & project team coordinator </p>
+              </div>
+              <!-- Project Management -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="clipboard-check" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Project Management</h4>
+                <p class="text-xs text-gray-500"> Waterfall methodology, timeline & documentation control </p>
+              </div>
+              <!-- Critical Thinking -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="brain-circuit" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Critical Thinking</h4>
+                <p class="text-xs text-gray-500"> Analytical problem solving & strategic decision making </p>
+              </div>
+              <!-- Communication -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="messages-square" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Communication</h4>
+                <p class="text-xs text-gray-500"> Cross-team collaboration & stakeholder communication </p>
+              </div>
+              <!-- Mentoring -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="graduation-cap" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Mentoring</h4>
+                <p class="text-xs text-gray-500"> Lecture assistant & junior team guidance </p>
+              </div>
+              <!-- Time Management -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="clock" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Time Management</h4>
+                <p class="text-xs text-gray-500"> Multi-project handling with strict deadlines </p>
+              </div>
+              <!-- Adaptability -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="refresh-cw" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Adaptability</h4>
+                <p class="text-xs text-gray-500"> Fast learner & adaptive to new technologies </p>
+              </div>
+              <!-- Achievements -->
+              <div class="p-4 bg-dark-bg rounded-lg border border-white/10 hover:border-cyan-400 transition-all hover:bg-cyan-900/10 group">
+                <i data-lucide="award" class="text-cyan-400 mb-2 group-hover:scale-110 transition-transform block"></i>
+                <h4 class="font-bold group-hover:text-cyan-300">Achievements</h4>
+                <p class="text-xs text-gray-500"> 1st Place Icon Design – Ministry of Religious Affairs </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
     <!-- Experience Timeline -->
     <section id="experience" class="py-20 section-spy">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold font-tech mb-4">Professional <span class="text-cyan-400">Journey</span></h2>
-                <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full shadow-neon"></div>
-            </div>
-
-            <div class="relative border-l-2 border-gray-800 ml-4 md:ml-0 md:pl-0 space-y-14">
-
-            <!-- 1. East Java Provincial Government -->
-            <div class="relative md:flex items-center justify-between group reveal">
-                <div class="hidden md:block w-[45%] text-right pr-8">
-                <span class="inline-block text-xs font-mono text-cyan-500 border border-cyan-500/30 px-2 py-1 rounded bg-cyan-900/20 mb-2">
-                    July 2025 – Present
-                </span>
-                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
-                    East Java Provincial Government
-                </h3>
-                <p class="text-cyan-500 text-sm mb-2">System & IT Administrator</p>
-                <p class="text-gray-400 text-sm">SIMRS • Data Warehouse • AI Automation</p>
-                </div>
-
-                <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-cyan-500 shadow-neon z-10"></div>
-
-                <div class="md:w-[45%] pl-6 md:pl-8">
-                
-
-                <p class="text-gray-400 text-sm leading-relaxed text-justify">
-                    Responsible for managing and developing regional Hospital Management Information
-                    Systems (SIMRS), designing and maintaining enterprise-scale data warehouse
-                    architectures, and implementing AI-powered workflow automation using n8n to
-                    improve operational efficiency. Actively administer Linux/Ubuntu production
-                    servers, oversee system security, deployment pipelines, backup strategies, and
-                    ensure all technical documentation complies with government IT governance
-                    standards.
-                </p>
-                </div>
-            </div>
-
-            <!-- 2. PT Sahabat Sakinah Senter -->
-            <div class="relative md:flex items-center justify-between group reveal">
-                <div class="hidden md:block w-[45%] text-right pr-8">
-                <span class="text-xs font-mono text-gray-400 border border-gray-700 px-2 py-1 rounded mb-2 inline-block">
-                    May 2024 – July 2025
-                </span>
-                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mt-2">
-                    PT. Sahabat Sakinah Senter
-                </h3>
-                <p class="text-gray-400 text-sm">Information Technology Staff</p>
-                </div>
-
-                <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-gray-700 group-hover:bg-cyan-400 z-10"></div>
-
-                <div class="ml-6 md:w-[45%] md:pl-8">
-                <h3 class="text-xl font-bold text-white md:hidden">PT. Sahabat Sakinah Senter</h3>
-                <p class="text-gray-400 text-sm">Information Technology Staff</p>
-
-                <p class="text-gray-400 text-sm mt-2 leading-relaxed text-justify">
-                    Developed and maintained internal business applications using Laravel and Node.js,
-                    managed relational and NoSQL databases including MySQL and MongoDB, and provided
-                    comprehensive IT support covering hardware, software, and network infrastructure.
-                    Played a key role in ensuring system reliability, performance monitoring, and
-                    operational continuity across departments.
-                </p>
-                </div>
-            </div>
-
-            <!-- 3. PT Arkatama Multi Solusindo -->
-            <div class="relative md:flex items-center justify-between group reveal">
-                <div class="hidden md:block w-[45%] text-right pr-8">
-                <span class="text-xs font-mono text-gray-400 border border-gray-700 px-2 py-1 rounded inline-block mt-2">
-                    Feb – Jun 2023
-                </span>
-                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
-                    PT. Arkatama Multi Solusindo
-                </h3>
-                <p class="text-gray-400 text-sm">Software Tester & Documentation Specialist</p>
-                
-                </div>
-
-                <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-gray-700 group-hover:bg-cyan-400 z-10"></div>
-
-                <div class="ml-6 md:w-[45%] md:pl-8">
-                <p class="text-gray-400 text-sm leading-relaxed text-justify">
-                    Conducted comprehensive software testing following the Software Testing Life Cycle
-                    (STLC), executed manual and automation testing using Selenium (Java) and Katalon
-                    Studio, and ensured system quality through black-box and regression testing.
-                    Additionally, produced detailed technical and end-user documentation to support
-                    software deployment and user adoption.
-                </p>
-                </div>
-            </div>
-
-            <!-- 4. Full Stack Project Leader -->
-            <div class="relative md:flex items-center justify-between group reveal">
-                <div class="hidden md:block w-[45%] text-right pr-8">
-                <span class="text-xs font-mono text-gray-400 border border-gray-700 px-2 py-1 rounded mb-2 inline-block">
-                    Oct 2022 – Feb 2023
-                </span>
-                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
-                    Altari Restaurant
-                </h3>
-                <p class="text-gray-400 text-sm">Project Leader & Full-Stack Developer</p>
-                </div>
-
-                <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-gray-700 group-hover:bg-cyan-400 z-10"></div>
-
-                <div class="ml-6 md:w-[45%] md:pl-8">
-                <p class="text-gray-400 text-sm leading-relaxed text-justify">
-                    Led the full system development lifecycle of a restaurant cashier application
-                    using the Waterfall methodology. Designed system architecture and workflows using
-                    UML diagrams, developed backend and frontend features with Laravel, and conducted
-                    usability and black-box testing to ensure system reliability, data accuracy, and
-                    user satisfaction prior to deployment.
-                </p>
-                </div>
-            </div>
-
-            <!-- 5. Lecture Assistant -->
-            <div class="relative md:flex items-center justify-between group reveal">
-                <div class="hidden md:block w-[45%] text-right pr-8">
-                <span class="text-xs font-mono text-gray-400 border border-gray-700 px-2 py-1 rounded mb-2 inline-block">
-                    Aug – Dec 2022
-                </span>
-                <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
-                    Brawijaya University
-                </h3>
-                <p class="text-gray-400 text-sm">Lecture Assistant – Computer Networks</p>
-                </div>
-
-                <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-gray-700 group-hover:bg-cyan-400 z-10"></div>
-
-                <div class="ml-6 md:w-[45%] md:pl-8">
-                <p class="text-gray-400 text-sm leading-relaxed text-justify">
-                    Assisted lecturers in delivering practical sessions for Basic Computer Networks
-                    courses, facilitated hands-on learning using Cisco Packet Tracer and Wireshark,
-                    and supported students in understanding network concepts, troubleshooting
-                    scenarios, and fundamental infrastructure principles.
-                </p>
-                </div>
-            </div>
-
-            </div>
-
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-3xl md:text-4xl font-bold font-tech mb-4">Professional <span class="text-cyan-400">Journey</span>
+          </h2>
+          <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full shadow-neon"></div>
         </div>
+        <div class="relative border-l-2 border-gray-800 ml-4 md:ml-0 md:pl-0 space-y-14">
+          <!-- 1. East Java Provincial Government -->
+          <div class="relative md:flex items-center justify-between group reveal">
+            <div class="hidden md:block w-[45%] text-right pr-8">
+              <span class="inline-block text-xs font-mono text-cyan-500 border border-cyan-500/30 px-2 py-1 rounded bg-cyan-900/20 mb-2"> July 2025 – Present </span>
+              <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors"> East Java Provincial Government </h3>
+              <p class="text-cyan-500 text-sm mb-2">System & IT Administrator</p>
+              <p class="text-gray-400 text-sm">SIMRS • Data Warehouse • AI Automation</p>
+            </div>
+            <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-cyan-500 shadow-neon z-10"></div>
+            <div class="md:w-[45%] pl-6 md:pl-8">
+              <p class="text-gray-400 text-sm leading-relaxed text-justify"> Responsible for managing and developing regional Hospital Management Information Systems (SIMRS), designing and maintaining enterprise-scale data warehouse architectures, and implementing AI-powered workflow automation using n8n to improve operational efficiency. Actively administer Linux/Ubuntu production servers, oversee system security, deployment pipelines, backup strategies, and ensure all technical documentation complies with government IT governance standards. </p>
+            </div>
+          </div>
+          <!-- 2. PT Sahabat Sakinah Senter -->
+          <div class="relative md:flex items-center justify-between group reveal">
+            <div class="hidden md:block w-[45%] text-right pr-8">
+              <span class="text-xs font-mono text-gray-400 border border-gray-700 px-2 py-1 rounded mb-2 inline-block"> May 2024 – July 2025 </span>
+              <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mt-2"> PT. Sahabat Sakinah Senter </h3>
+              <p class="text-gray-400 text-sm">Information Technology Staff</p>
+            </div>
+            <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-gray-700 group-hover:bg-cyan-400 z-10"></div>
+            <div class="ml-6 md:w-[45%] md:pl-8">
+              <h3 class="text-xl font-bold text-white md:hidden">PT. Sahabat Sakinah Senter</h3>
+              <p class="text-gray-400 text-sm">Information Technology Staff</p>
+              <p class="text-gray-400 text-sm mt-2 leading-relaxed text-justify"> Developed and maintained internal business applications using Laravel and Node.js, managed relational and NoSQL databases including MySQL and MongoDB, and provided comprehensive IT support covering hardware, software, and network infrastructure. Played a key role in ensuring system reliability, performance monitoring, and operational continuity across departments. </p>
+            </div>
+          </div>
+          <!-- 3. PT Arkatama Multi Solusindo -->
+          <div class="relative md:flex items-center justify-between group reveal">
+            <div class="hidden md:block w-[45%] text-right pr-8">
+              <span class="text-xs font-mono text-gray-400 border border-gray-700 px-2 py-1 rounded inline-block mt-2"> Feb – Jun 2023 </span>
+              <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors"> PT. Arkatama Multi Solusindo </h3>
+              <p class="text-gray-400 text-sm">Software Tester & Documentation Specialist</p>
+            </div>
+            <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-gray-700 group-hover:bg-cyan-400 z-10"></div>
+            <div class="ml-6 md:w-[45%] md:pl-8">
+              <p class="text-gray-400 text-sm leading-relaxed text-justify"> Conducted comprehensive software testing following the Software Testing Life Cycle (STLC), executed manual and automation testing using Selenium (Java) and Katalon Studio, and ensured system quality through black-box and regression testing. Additionally, produced detailed technical and end-user documentation to support software deployment and user adoption. </p>
+            </div>
+          </div>
+          <!-- 4. Full Stack Project Leader -->
+          <div class="relative md:flex items-center justify-between group reveal">
+            <div class="hidden md:block w-[45%] text-right pr-8">
+              <span class="text-xs font-mono text-gray-400 border border-gray-700 px-2 py-1 rounded mb-2 inline-block"> Oct 2022 – Feb 2023 </span>
+              <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors"> Altari Restaurant </h3>
+              <p class="text-gray-400 text-sm">Project Leader & Full-Stack Developer</p>
+            </div>
+            <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-gray-700 group-hover:bg-cyan-400 z-10"></div>
+            <div class="ml-6 md:w-[45%] md:pl-8">
+              <p class="text-gray-400 text-sm leading-relaxed text-justify"> Led the full system development lifecycle of a restaurant cashier application using the Waterfall methodology. Designed system architecture and workflows using UML diagrams, developed backend and frontend features with Laravel, and conducted usability and black-box testing to ensure system reliability, data accuracy, and user satisfaction prior to deployment. </p>
+            </div>
+          </div>
+          <!-- 5. Lecture Assistant -->
+          <div class="relative md:flex items-center justify-between group reveal">
+            <div class="hidden md:block w-[45%] text-right pr-8">
+              <span class="text-xs font-mono text-gray-400 border border-gray-700 px-2 py-1 rounded mb-2 inline-block"> Aug – Dec 2022 </span>
+              <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors"> Brawijaya University </h3>
+              <p class="text-gray-400 text-sm">Lecture Assistant – Computer Networks</p>
+            </div>
+            <div class="absolute left-[-9px] md:left-1/2 md:-ml-[9px] w-4 h-4 rounded-full bg-gray-700 group-hover:bg-cyan-400 z-10"></div>
+            <div class="ml-6 md:w-[45%] md:pl-8">
+              <p class="text-gray-400 text-sm leading-relaxed text-justify"> Assisted lecturers in delivering practical sessions for Basic Computer Networks courses, facilitated hands-on learning using Cisco Packet Tracer and Wireshark, and supported students in understanding network concepts, troubleshooting scenarios, and fundamental infrastructure principles. </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
     <!-- Skills Section -->
     <section class="py-20 bg-dark-card/50 border-y border-white/5 backdrop-blur-sm section-spy">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="text-center mb-16 reveal">
-        <h2 class="text-3xl md:text-4xl font-bold font-tech mb-4">
-            Technical <span class="text-cyan-400">Skills</span>
-        </h2>
-        <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full shadow-neon"></div>
+          <h2 class="text-3xl md:text-4xl font-bold font-tech mb-4"> Technical <span class="text-cyan-400">Skills</span>
+          </h2>
+          <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full shadow-neon"></div>
         </div>
-
         <!-- Main Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-        <!-- Programming & Frameworks -->
-        <div class="glass-card p-8 rounded-xl">
-            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">
-            Programming & Frameworks
-            </h3>
-
+          <!-- Programming & Frameworks -->
+          <div class="glass-card p-8 rounded-xl">
+            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2"> Programming & Frameworks </h3>
             <div class="space-y-4">
-            <div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">PHP & Laravel</span>
-                <span class="text-sm text-cyan-400">85%</span>
+                  <span class="text-sm text-gray-300">PHP & Laravel</span>
+                  <span class="text-sm text-cyan-400">85%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:85%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:85%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">JavaScript / Node.js</span>
-                <span class="text-sm text-cyan-400">80%</span>
+                  <span class="text-sm text-gray-300">JavaScript / Node.js</span>
+                  <span class="text-sm text-cyan-400">80%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">Java</span>
-                <span class="text-sm text-cyan-400">75%</span>
+                  <span class="text-sm text-gray-300">Java</span>
+                  <span class="text-sm text-cyan-400">75%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:75%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:75%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">Golang</span>
-                <span class="text-sm text-cyan-400">65%</span>
+                  <span class="text-sm text-gray-300">Golang</span>
+                  <span class="text-sm text-cyan-400">65%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:65%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:65%"></div>
                 </div>
+              </div>
             </div>
-            </div>
-        </div>
-
-        <!-- Database & Data Engineering -->
-        <div class="glass-card p-8 rounded-xl">
-            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">
-            Database & Data Engineering
-            </h3>
-
+          </div>
+          <!-- Database & Data Engineering -->
+          <div class="glass-card p-8 rounded-xl">
+            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2"> Database & Data Engineering </h3>
             <div class="space-y-4">
-            <div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">MySQL / PostgreSQL</span>
-                <span class="text-sm text-cyan-400">85%</span>
+                  <span class="text-sm text-gray-300">MySQL / PostgreSQL</span>
+                  <span class="text-sm text-cyan-400">85%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:85%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:85%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">MongoDB / DB2</span>
-                <span class="text-sm text-cyan-400">80%</span>
+                  <span class="text-sm text-gray-300">MongoDB / DB2</span>
+                  <span class="text-sm text-cyan-400">80%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">Data Warehouse & ETL</span>
-                <span class="text-sm text-cyan-400">80%</span>
+                  <span class="text-sm text-gray-300">Data Warehouse & ETL</span>
+                  <span class="text-sm text-cyan-400">80%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
                 </div>
+              </div>
             </div>
-            </div>
-        </div>
-
-        <!-- Infrastructure & DevOps -->
-        <div class="glass-card p-8 rounded-xl">
-            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">
-            Infrastructure & DevOps
-            </h3>
-
+          </div>
+          <!-- Infrastructure & DevOps -->
+          <div class="glass-card p-8 rounded-xl">
+            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2"> Infrastructure & DevOps </h3>
             <div class="space-y-4">
-            <div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">Linux / Ubuntu Server</span>
-                <span class="text-sm text-cyan-400">85%</span>
+                  <span class="text-sm text-gray-300">Linux / Ubuntu Server</span>
+                  <span class="text-sm text-cyan-400">85%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:85%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:85%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">Server Deployment & Security</span>
-                <span class="text-sm text-cyan-400">80%</span>
+                  <span class="text-sm text-gray-300">Server Deployment & Security</span>
+                  <span class="text-sm text-cyan-400">80%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">Backup & Performance Monitoring</span>
-                <span class="text-sm text-cyan-400">80%</span>
+                  <span class="text-sm text-gray-300">Backup & Performance Monitoring</span>
+                  <span class="text-sm text-cyan-400">80%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
                 </div>
+              </div>
             </div>
-            </div>
-        </div>
-
-        <!-- Automation, Testing & AI -->
-        <div class="glass-card p-8 rounded-xl">
-            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">
-            Automation, Testing & AI
-            </h3>
-
+          </div>
+          <!-- Automation, Testing & AI -->
+          <div class="glass-card p-8 rounded-xl">
+            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2"> Automation, Testing & AI </h3>
             <div class="space-y-4">
-            <div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">n8n Workflow Automation</span>
-                <span class="text-sm text-cyan-400">85%</span>
+                  <span class="text-sm text-gray-300">n8n Workflow Automation</span>
+                  <span class="text-sm text-cyan-400">85%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:85%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:85%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">Selenium / Automation Testing</span>
-                <span class="text-sm text-cyan-400">80%</span>
+                  <span class="text-sm text-gray-300">Selenium / Automation Testing</span>
+                  <span class="text-sm text-cyan-400">80%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:80%"></div>
                 </div>
-            </div>
-
-            <div>
+              </div>
+              <div>
                 <div class="flex justify-between mb-1">
-                <span class="text-sm text-gray-300">Katalon / TestNG / Black-box</span>
-                <span class="text-sm text-cyan-400">75%</span>
+                  <span class="text-sm text-gray-300">Katalon / TestNG / Black-box</span>
+                  <span class="text-sm text-cyan-400">75%</span>
                 </div>
                 <div class="w-full bg-gray-700 rounded-full h-2">
-                <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:75%"></div>
+                  <div class="bg-cyan-500 h-2 rounded-full shadow-neon" style="width:75%"></div>
                 </div>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
-
-        </div>
-
         <!-- Skill Tags -->
         <div class="mt-10 flex flex-wrap justify-center gap-4 reveal">
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Laravel</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Node.js</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">SIMRS</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Data Warehouse</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">ETL</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Selenium</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">n8n</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Linux Server</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Adobe Photoshop</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Blender 3D</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Figma</span>
-        <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">3DVista</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Laravel</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Node.js</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">SIMRS</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Data Warehouse</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">ETL</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Selenium</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">n8n</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Linux Server</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Adobe Photoshop</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Blender 3D</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">Figma</span>
+          <span class="px-4 py-2 bg-slate-800/50 backdrop-blur rounded-full text-xs text-gray-400 border border-slate-700 hover:border-cyan-500 hover:text-cyan-400 transition-colors cursor-default">3DVista</span>
         </div>
-
-    </div>
+      </div>
     </section>
-
-
     <!-- Projects Section -->
     <section id="projects" class="py-20 section-spy">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold font-tech mb-4">Featured <span class="text-cyan-400">Projects</span></h2>
-                <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full shadow-neon"></div>
-                <p class="mt-4 text-gray-400">A detailed look into my key contributions and technical implementations.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                
-                <!-- Project 1 -->
-                <div class="tilt-card group relative bg-dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-500 transition-all duration-300 hover:shadow-neon-hover flex flex-col reveal">
-    
-                <!-- IMAGE SECTION -->
-                <div class="h-64 w-full shrink-0 relative overflow-hidden bg-gradient-to-br from-gray-900 to-cyan-900">
-                    
-                    <!-- Hover Glow -->
-                    <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-
-                    <div class="relative z-20 w-full h-full transition-transform duration-500 group-hover:scale-110">
-                        <img 
-                            src="assets/ai_agent_hospital.png"
-                            alt="AI Agent for Hospital Management"
-                            class="w-full h-full object-cover"
-                        >
-
-                        <!-- Overlay Title -->
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <span class="font-tech text-lg font-bold text-white tracking-widest">
-                                AI AGENT HOSPITAL
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CONTENT SECTION -->
-                <div class="p-8 flex-grow flex flex-col bg-dark-card/90 backdrop-blur-sm">
-                    
-                    <!-- HEADER -->
-                    <div class="mb-4">
-                        <h3 class="text-2xl font-bold text-white mb-2">
-                            AI Agent for Hospital Management
-                        </h3>
-                        <p class="text-cyan-400 text-sm font-semibold">
-                            Intelligent Decision Support & Data Exploration
-                        </p>
-                    </div>
-                    
-                    <!-- DESCRIPTION -->
-                    <div class="text-gray-400 text-sm mb-6 space-y-4 flex-grow">
-                        <p>
-                            An AI-powered assistant ecosystem designed to help hospital staff
-                            explore operational data and internal documents through natural language queries.
-                        </p>
-
-                        <ul class="project-list space-y-2">
-                            <li>
-                                <strong>Dual AI Agent Architecture:</strong>
-                                Consists of two specialized agents — a RAG-based document agent
-                                using hospital PDF documents as its knowledge source,
-                                and a database agent built on vectorized hospital data.
-                            </li>
-                            <li>
-                                <strong>Document RAG Agent:</strong>
-                                Hospital policies, SOPs, and reports are ingested from Google Drive,
-                                processed into embeddings, and queried contextually to deliver accurate,
-                                source-aware answers.
-                            </li>
-                            <li>
-                                <strong>Database Vector Agent:</strong>
-                                Operational data from PostgreSQL (Supabase) is vectorized,
-                                enabling semantic search and analytical Q&A over structured hospital data.
-                            </li>
-                            <li>
-                                <strong>Orchestration & Automation:</strong>
-                                n8n is used to automate data ingestion, syncing from Google Drive,
-                                database updates, and agent execution pipelines.
-                            </li>
-                            <li>
-                                <strong>Intelligent Query Routing:</strong>
-                                Python-based LangChain acts as the reasoning layer,
-                                dynamically classifying user queries and routing them
-                                to the appropriate agent and AI model based on question type and priority.
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- TECH STACK -->
-                    <div class="pt-6 border-t border-gray-800">
-                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
-                            Tech Stack
-                        </h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded">
-                                Python
-                            </span>
-                            <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded">
-                                LangChain
-                            </span>
-                            <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded">
-                                n8n
-                            </span>
-                            <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded">
-                                PostgreSQL
-                            </span>
-                            <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded">
-                                Supabase
-                            </span>
-                            <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded">
-                                Vector Database
-                            </span>
-                            <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded">
-                                Google Drive API
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-                <!-- Project 2 -->
-            <div class="tilt-card group relative bg-dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] flex flex-col reveal delay-100">
-                
-                <!-- IMAGE SECTION -->
-                <div class="h-64 w-full shrink-0 overflow-hidden bg-gradient-to-br from-gray-900 to-purple-900">
-                    <div class="relative z-20 w-full h-full transition-transform duration-500 group-hover:scale-110">
-                        <img 
-                            src="assets/pos_restaurant.png"
-                            alt="Altari Restaurant POS System"
-                            class="w-full h-full object-cover"
-                        >
-
-                        <!-- Overlay Title -->
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <span class="font-tech text-lg font-bold text-white tracking-widest">
-                                ALTARI RESTO POS
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CONTENT SECTION -->
-                <div class="p-8 flex-grow flex flex-col bg-dark-card/90 backdrop-blur-sm">
-                    
-                    <!-- HEADER -->
-                    <div class="mb-4">
-                        <h3 class="text-2xl font-bold text-white mb-2">
-                            Altari Restaurant POS & Management System
-                        </h3>
-                        <p class="text-purple-400 text-sm font-semibold">
-                            Sales, Inventory & Financial Reporting Platform
-                        </p>
-                    </div>
-                    
-                    <!-- DESCRIPTION -->
-                    <div class="text-gray-400 text-sm mb-6 space-y-4 flex-grow">
-                        <p>
-                            A full-stack restaurant POS system designed to streamline cashier operations
-                            while providing accurate, real-time business insights for restaurant owners.
-                        </p>
-
-                        <ul class="project-list space-y-2">
-                            <li>
-                                <strong>Point of Sale & Transactions:</strong>
-                                Fast and accurate order processing with automatic bill calculation,
-                                receipt printing, and payment tracking to minimize cashier errors.
-                            </li>
-                            <li>
-                                <strong>Sales & Financial Reporting:</strong>
-                                Detailed daily, weekly, and monthly sales reports,
-                                revenue summaries, and transaction breakdowns that
-                                significantly improve financial accuracy and transparency.
-                            </li>
-                            <li>
-                                <strong>Inventory & Stock Control:</strong>
-                                Real-time stock deduction based on sales,
-                                low-stock notifications, and inventory usage reports
-                                to prevent overstocking or stock shortages.
-                            </li>
-                            <li>
-                                <strong>Operational Impact:</strong>
-                                The system enables more efficient operations by reducing manual recording,
-                                minimizing human error, and providing centralized data
-                                for sales, finance, and inventory management.
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- TECH STACK -->
-                    <div class="pt-6 border-t border-gray-800">
-                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
-                            Tech Stack
-                        </h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-purple-900/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded">
-                                Laravel
-                            </span>
-                            <span class="text-xs font-mono bg-purple-900/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded">
-                                PHP
-                            </span>
-                            <span class="text-xs font-mono bg-purple-900/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded">
-                                MySQL
-                            </span>
-                            <span class="text-xs font-mono bg-purple-900/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded">
-                                Bootstrap
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-                <!-- Project 3 -->
-                <div class="tilt-card group relative bg-dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-green-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.4)] flex flex-col reveal">
-                    
-                    <!-- IMAGE SECTION -->
-                    <div class="h-64 w-full shrink-0 overflow-hidden bg-gradient-to-br from-gray-900 to-green-900">
-                        <div class="relative z-20 w-full h-full transition-transform duration-500 group-hover:scale-110">
-                            <img 
-                                src="assets/whatsapp_cms.png"
-                                alt="WhatsApp Blast & Monitoring CMS"
-                                class="w-full h-full object-cover"
-                            >
-
-                            <!-- Overlay Title -->
-                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                                <span class="font-tech text-lg font-bold text-white tracking-widest">
-                                    WHATSAPP BLAST CMS
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CONTENT SECTION -->
-                    <div class="p-8 flex-grow flex flex-col bg-dark-card/90 backdrop-blur-sm">
-                        
-                        <!-- HEADER -->
-                        <div class="mb-4">
-                            <h3 class="text-2xl font-bold text-white mb-2">
-                                WhatsApp Blast & Monitoring CMS
-                            </h3>
-                            <p class="text-green-400 text-sm font-semibold">
-                                Customer Engagement & Call Center Monitoring
-                            </p>
-                        </div>
-                        
-                        <!-- DESCRIPTION -->
-                        <div class="text-gray-400 text-sm mb-6 space-y-4 flex-grow">
-                            <p>
-                                A centralized customer management system designed to automate WhatsApp messaging
-                                while providing full visibility into call center conversations and interactions.
-                            </p>
-
-                            <ul class="project-list space-y-2">
-                                <li>
-                                    <strong>Laravel & Node.js Integration:</strong>
-                                    Backend system built with PHP Laravel, integrated with Node.js service
-                                    using an extended Baileys API for real-time WhatsApp communication.
-                                </li>
-                                <li>
-                                    <strong>Conversation Monitoring:</strong>
-                                    All incoming and outgoing messages are logged into a single database,
-                                    enabling supervisors to review conversations between call center agents
-                                    and customers.
-                                </li>
-                                <li>
-                                    <strong>Broadcast & Compliance Control:</strong>
-                                    Simplifies bulk message broadcasting while identifying potential
-                                    agent misconduct, misinformation, or service errors through message history tracking.
-                                </li>
-                                <li>
-                                    <strong>Business Impact:</strong>
-                                    Improved operational transparency, reduced customer disputes,
-                                    and increased marketing reach through controlled and auditable messaging.
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- TECH STACK -->
-                        <div class="pt-6 border-t border-gray-800">
-                            <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
-                                Tech Stack
-                            </h4>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded">
-                                    Laravel
-                                </span>
-                                <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded">
-                                    PHP
-                                </span>
-                                <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded">
-                                    Node.js
-                                </span>
-                                <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded">
-                                    Baileys API
-                                </span>
-                                <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded">
-                                    Redis
-                                </span>
-                                <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded">
-                                    MySQL
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Project 4 -->
-                <div class="tilt-card group relative bg-dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] flex flex-col reveal delay-200">
-    
-                <!-- IMAGE SECTION -->
-                <div class="h-64 w-full shrink-0 overflow-hidden bg-gradient-to-br from-gray-900 to-blue-900">
-                    <div class="relative z-20 w-full h-full transition-transform duration-500 group-hover:scale-110">
-                        <img 
-                            src="assets/rent_car.png"
-                            alt="Rent Car Operational & Management System"
-                            class="w-full h-full object-cover"
-                        >
-
-                        <!-- Overlay Title -->
-                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                            <span class="font-tech text-lg font-bold text-white tracking-widest">
-                                RENT CAR SYSTEM
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CONTENT SECTION -->
-                <div class="p-8 flex-grow flex flex-col bg-dark-card/90 backdrop-blur-sm">
-                    
-                    <!-- HEADER -->
-                    <div class="mb-4">
-                        <h3 class="text-2xl font-bold text-white mb-2">
-                            Rent Car Operational & Management System
-                        </h3>
-                        <p class="text-blue-400 text-sm font-semibold">
-                            Fleet Management, Booking & Financial Reporting
-                        </p>
-                    </div>
-
-                    <!-- DESCRIPTION -->
-                    <div class="text-gray-400 text-sm mb-6 space-y-4 flex-grow">
-                        <p>
-                            A centralized web-based system built to manage rent car operations,
-                            vehicle availability, and financial performance with high efficiency.
-                        </p>
-
-                        <ul class="project-list space-y-2">
-                            <li>
-                                <strong>Multi-Role User Management:</strong>
-                                Super Admin (system configuration & access control),
-                                Operational Admin (booking & fleet status),
-                                Finance (income, expense & profit monitoring),
-                                and Customer (booking & rental history).
-                            </li>
-                            <li>
-                                <strong>Interactive Rental Calendar:</strong>
-                                Real-time vehicle availability, prevention of double booking,
-                                rental period visualization, and automated status changes
-                                (Available, Booked, On Rent, Maintenance).
-                            </li>
-                            <li>
-                                <strong>Financial & Performance Reporting:</strong>
-                                Automated rental income calculation, expense tracking,
-                                daily/monthly financial reports, profit summaries,
-                                and export-ready data for accounting purposes.
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- TECH STACK -->
-                    <div class="pt-6 border-t border-gray-800">
-                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
-                            Tech Stack
-                        </h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="text-xs font-mono bg-blue-900/20 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded">
-                                Laravel
-                            </span>
-                            <span class="text-xs font-mono bg-blue-900/20 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded">
-                                PHP
-                            </span>
-                            <span class="text-xs font-mono bg-blue-900/20 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded">
-                                MySQL
-                            </span>
-                            <span class="text-xs font-mono bg-blue-900/20 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded">
-                                FullCalendar
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-3xl md:text-4xl font-bold font-tech mb-4">Featured <span class="text-cyan-400">Projects</span>
+          </h2>
+          <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full shadow-neon"></div>
+          <p class="mt-4 text-gray-400">A detailed look into my key contributions and technical implementations.</p>
         </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <!-- Project 1 -->
+          <div class="tilt-card group relative bg-dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-cyan-500 transition-all duration-300 hover:shadow-neon-hover flex flex-col reveal">
+            <!-- IMAGE SECTION -->
+            <div class="h-64 w-full shrink-0 relative overflow-hidden bg-gradient-to-br from-gray-900 to-cyan-900">
+              <!-- Hover Glow -->
+              <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+              <div class="relative z-20 w-full h-full transition-transform duration-500 group-hover:scale-110">
+                <img src="assets/ai_agent_hospital.png" alt="AI Agent for Hospital Management" class="w-full h-full object-cover">
+                <!-- Overlay Title -->
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <span class="font-tech text-lg font-bold text-white tracking-widest"> AI AGENT HOSPITAL </span>
+                </div>
+              </div>
+            </div>
+            <!-- CONTENT SECTION -->
+            <div class="p-8 flex-grow flex flex-col bg-dark-card/90 backdrop-blur-sm">
+              <!-- HEADER -->
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-white mb-2"> AI Agent for Hospital Management </h3>
+                <p class="text-cyan-400 text-sm font-semibold"> Intelligent Decision Support & Data Exploration </p>
+              </div>
+              <!-- DESCRIPTION -->
+              <div class="text-gray-400 text-sm mb-6 space-y-4 flex-grow">
+                <p> An AI-powered assistant ecosystem designed to help hospital staff explore operational data and internal documents through natural language queries. </p>
+                <ul class="project-list space-y-2">
+                  <li>
+                    <strong>Dual AI Agent Architecture:</strong> Consists of two specialized agents — a RAG-based document agent using hospital PDF documents as its knowledge source, and a database agent built on vectorized hospital data.
+                  </li>
+                  <li>
+                    <strong>Document RAG Agent:</strong> Hospital policies, SOPs, and reports are ingested from Google Drive, processed into embeddings, and queried contextually to deliver accurate, source-aware answers.
+                  </li>
+                  <li>
+                    <strong>Database Vector Agent:</strong> Operational data from PostgreSQL (Supabase) is vectorized, enabling semantic search and analytical Q&A over structured hospital data.
+                  </li>
+                  <li>
+                    <strong>Orchestration & Automation:</strong> n8n is used to automate data ingestion, syncing from Google Drive, database updates, and agent execution pipelines.
+                  </li>
+                  <li>
+                    <strong>Intelligent Query Routing:</strong> Python-based LangChain acts as the reasoning layer, dynamically classifying user queries and routing them to the appropriate agent and AI model based on question type and priority.
+                  </li>
+                </ul>
+              </div>
+              <!-- TECH STACK -->
+              <div class="pt-6 border-t border-gray-800">
+                <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3"> Tech Stack </h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded"> Python </span>
+                  <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded"> LangChain </span>
+                  <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded"> n8n </span>
+                  <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded"> PostgreSQL </span>
+                  <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded"> Supabase </span>
+                  <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded"> Vector Database </span>
+                  <span class="text-xs font-mono bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 px-3 py-1.5 rounded"> Google Drive API </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Project 2 -->
+          <div class="tilt-card group relative bg-dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] flex flex-col reveal delay-100">
+            <!-- IMAGE SECTION -->
+            <div class="h-64 w-full shrink-0 overflow-hidden bg-gradient-to-br from-gray-900 to-purple-900">
+              <div class="relative z-20 w-full h-full transition-transform duration-500 group-hover:scale-110">
+                <img src="assets/pos_restaurant.png" alt="Altari Restaurant POS System" class="w-full h-full object-cover">
+                <!-- Overlay Title -->
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <span class="font-tech text-lg font-bold text-white tracking-widest"> ALTARI RESTO POS </span>
+                </div>
+              </div>
+            </div>
+            <!-- CONTENT SECTION -->
+            <div class="p-8 flex-grow flex flex-col bg-dark-card/90 backdrop-blur-sm">
+              <!-- HEADER -->
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-white mb-2"> Altari Restaurant POS & Management System </h3>
+                <p class="text-purple-400 text-sm font-semibold"> Sales, Inventory & Financial Reporting Platform </p>
+              </div>
+              <!-- DESCRIPTION -->
+              <div class="text-gray-400 text-sm mb-6 space-y-4 flex-grow">
+                <p> A full-stack restaurant POS system designed to streamline cashier operations while providing accurate, real-time business insights for restaurant owners. </p>
+                <ul class="project-list space-y-2">
+                  <li>
+                    <strong>Point of Sale & Transactions:</strong> Fast and accurate order processing with automatic bill calculation, receipt printing, and payment tracking to minimize cashier errors.
+                  </li>
+                  <li>
+                    <strong>Sales & Financial Reporting:</strong> Detailed daily, weekly, and monthly sales reports, revenue summaries, and transaction breakdowns that significantly improve financial accuracy and transparency.
+                  </li>
+                  <li>
+                    <strong>Inventory & Stock Control:</strong> Real-time stock deduction based on sales, low-stock notifications, and inventory usage reports to prevent overstocking or stock shortages.
+                  </li>
+                  <li>
+                    <strong>Operational Impact:</strong> The system enables more efficient operations by reducing manual recording, minimizing human error, and providing centralized data for sales, finance, and inventory management.
+                  </li>
+                </ul>
+              </div>
+              <!-- TECH STACK -->
+              <div class="pt-6 border-t border-gray-800">
+                <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3"> Tech Stack </h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs font-mono bg-purple-900/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded"> Laravel </span>
+                  <span class="text-xs font-mono bg-purple-900/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded"> PHP </span>
+                  <span class="text-xs font-mono bg-purple-900/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded"> MySQL </span>
+                  <span class="text-xs font-mono bg-purple-900/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded"> Bootstrap </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div class="tilt-card group relative bg-dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-green-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,197,94,0.4)] flex flex-col reveal">
+            <!-- IMAGE SECTION -->
+            <div class="h-64 w-full shrink-0 overflow-hidden bg-gradient-to-br from-gray-900 to-green-900">
+              <div class="relative z-20 w-full h-full transition-transform duration-500 group-hover:scale-110">
+                <img src="assets/whatsapp_cms.png" alt="WhatsApp Blast & Monitoring CMS" class="w-full h-full object-cover">
+                <!-- Overlay Title -->
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <span class="font-tech text-lg font-bold text-white tracking-widest"> WHATSAPP BLAST CMS </span>
+                </div>
+              </div>
+            </div>
+            <!-- CONTENT SECTION -->
+            <div class="p-8 flex-grow flex flex-col bg-dark-card/90 backdrop-blur-sm">
+              <!-- HEADER -->
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-white mb-2"> WhatsApp Blast & Monitoring CMS </h3>
+                <p class="text-green-400 text-sm font-semibold"> Customer Engagement & Call Center Monitoring </p>
+              </div>
+              <!-- DESCRIPTION -->
+              <div class="text-gray-400 text-sm mb-6 space-y-4 flex-grow">
+                <p> A centralized customer management system designed to automate WhatsApp messaging while providing full visibility into call center conversations and interactions. </p>
+                <ul class="project-list space-y-2">
+                  <li>
+                    <strong>Laravel & Node.js Integration:</strong> Backend system built with PHP Laravel, integrated with Node.js service using an extended Baileys API for real-time WhatsApp communication.
+                  </li>
+                  <li>
+                    <strong>Conversation Monitoring:</strong> All incoming and outgoing messages are logged into a single database, enabling supervisors to review conversations between call center agents and customers.
+                  </li>
+                  <li>
+                    <strong>Broadcast & Compliance Control:</strong> Simplifies bulk message broadcasting while identifying potential agent misconduct, misinformation, or service errors through message history tracking.
+                  </li>
+                  <li>
+                    <strong>Business Impact:</strong> Improved operational transparency, reduced customer disputes, and increased marketing reach through controlled and auditable messaging.
+                  </li>
+                </ul>
+              </div>
+              <!-- TECH STACK -->
+              <div class="pt-6 border-t border-gray-800">
+                <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3"> Tech Stack </h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded"> Laravel </span>
+                  <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded"> PHP </span>
+                  <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded"> Node.js </span>
+                  <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded"> Baileys API </span>
+                  <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded"> Redis </span>
+                  <span class="text-xs font-mono bg-green-900/20 text-green-300 border border-green-500/30 px-3 py-1.5 rounded"> MySQL </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Project 4 -->
+          <div class="tilt-card group relative bg-dark-card rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] flex flex-col reveal delay-200">
+            <!-- IMAGE SECTION -->
+            <div class="h-64 w-full shrink-0 overflow-hidden bg-gradient-to-br from-gray-900 to-blue-900">
+              <div class="relative z-20 w-full h-full transition-transform duration-500 group-hover:scale-110">
+                <img src="assets/rent_car.png" alt="Rent Car Operational & Management System" class="w-full h-full object-cover">
+                <!-- Overlay Title -->
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <span class="font-tech text-lg font-bold text-white tracking-widest"> RENT CAR SYSTEM </span>
+                </div>
+              </div>
+            </div>
+            <!-- CONTENT SECTION -->
+            <div class="p-8 flex-grow flex flex-col bg-dark-card/90 backdrop-blur-sm">
+              <!-- HEADER -->
+              <div class="mb-4">
+                <h3 class="text-2xl font-bold text-white mb-2"> Rent Car Operational & Management System </h3>
+                <p class="text-blue-400 text-sm font-semibold"> Fleet Management, Booking & Financial Reporting </p>
+              </div>
+              <!-- DESCRIPTION -->
+              <div class="text-gray-400 text-sm mb-6 space-y-4 flex-grow">
+                <p> A centralized web-based system built to manage rent car operations, vehicle availability, and financial performance with high efficiency. </p>
+                <ul class="project-list space-y-2">
+                  <li>
+                    <strong>Multi-Role User Management:</strong> Super Admin (system configuration & access control), Operational Admin (booking & fleet status), Finance (income, expense & profit monitoring), and Customer (booking & rental history).
+                  </li>
+                  <li>
+                    <strong>Interactive Rental Calendar:</strong> Real-time vehicle availability, prevention of double booking, rental period visualization, and automated status changes (Available, Booked, On Rent, Maintenance).
+                  </li>
+                  <li>
+                    <strong>Financial & Performance Reporting:</strong> Automated rental income calculation, expense tracking, daily/monthly financial reports, profit summaries, and export-ready data for accounting purposes.
+                  </li>
+                </ul>
+              </div>
+              <!-- TECH STACK -->
+              <div class="pt-6 border-t border-gray-800">
+                <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3"> Tech Stack </h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="text-xs font-mono bg-blue-900/20 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded"> Laravel </span>
+                  <span class="text-xs font-mono bg-blue-900/20 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded"> PHP </span>
+                  <span class="text-xs font-mono bg-blue-900/20 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded"> MySQL </span>
+                  <span class="text-xs font-mono bg-blue-900/20 text-blue-300 border border-blue-500/30 px-3 py-1.5 rounded"> FullCalendar </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-dark-card/50 relative overflow-hidden section-spy">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-            <h2 class="text-3xl md:text-4xl font-bold font-tech mb-8 text-white">Let's <span class="text-cyan-400">Connect</span></h2>
-            <p class="text-gray-400 mb-12">
-                Interested in AI, Healthcare Systems, or Data Engineering? <br>
-                Let's build something amazing together!
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <a href="mailto:primulajuve@gmail.com" class="p-6 rounded-xl bg-dark-bg border border-white/5 hover:border-cyan-500 transition-all hover:-translate-y-2 group hover:shadow-neon">
-                    <i data-lucide="mail" class="w-8 h-8 mx-auto text-cyan-400 mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="text-white font-semibold">Email</h4>
-                    <p class="text-gray-400 text-sm mt-2">primulajuve@gmail.com</p>
-                </a>
-                <a href="https://instagram.com/primulajuve" class="p-6 rounded-xl bg-dark-bg border border-white/5 hover:border-cyan-500 transition-all hover:-translate-y-2 group hover:shadow-neon">
-                    <i data-lucide="instagram" class="w-8 h-8 mx-auto text-cyan-400 mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="text-white font-semibold">Instagram</h4>
-                    <p class="text-gray-400 text-sm mt-2">@primulajuve</p>
-                </a>
-                <div class="p-6 rounded-xl bg-dark-bg border border-white/5 hover:border-cyan-500 transition-all hover:-translate-y-2 group hover:shadow-neon">
-                    <i data-lucide="map-pin" class="w-8 h-8 mx-auto text-cyan-400 mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="text-white font-semibold">Location</h4>
-                    <p class="text-gray-400 text-sm mt-2">Sidoarjo, East Java</p>
-                </div>
-            </div>
-
-            <!-- Simple Form Placeholder -->
-            <form class="max-w-xl mx-auto space-y-4 relative z-10">
-                <div class="grid grid-cols-2 gap-4">
-                    <input type="text" placeholder="Name" class="w-full bg-dark-bg border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                    <input type="email" placeholder="Email" class="w-full bg-dark-bg border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                </div>
-                <textarea rows="4" placeholder="Your Message" class="w-full bg-dark-bg border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"></textarea>
-                <button type="button" onclick="alert('Demo Mode: Message Sent Successfully!')" class="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] transform hover:scale-[1.02]">
-                    Send Message
-                </button>
-            </form>
+      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+        <h2 class="text-3xl md:text-4xl font-bold font-tech mb-8 text-white">Let's <span class="text-cyan-400">Connect</span>
+        </h2>
+        <p class="text-gray-400 mb-12"> Interested in AI, Healthcare Systems, or Data Engineering? <br> Let's build something amazing together! </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <a href="mailto:primulajuve@gmail.com" class="p-6 rounded-xl bg-dark-bg border border-white/5 hover:border-cyan-500 transition-all hover:-translate-y-2 group hover:shadow-neon">
+            <i data-lucide="mail" class="w-8 h-8 mx-auto text-cyan-400 mb-4 group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-white font-semibold">Email</h4>
+            <p class="text-gray-400 text-sm mt-2">primulajuve@gmail.com</p>
+          </a>
+          <a href="https://instagram.com/primulajuve" class="p-6 rounded-xl bg-dark-bg border border-white/5 hover:border-cyan-500 transition-all hover:-translate-y-2 group hover:shadow-neon">
+            <i data-lucide="instagram" class="w-8 h-8 mx-auto text-cyan-400 mb-4 group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-white font-semibold">Instagram</h4>
+            <p class="text-gray-400 text-sm mt-2">@primulajuve</p>
+          </a>
+          <div class="p-6 rounded-xl bg-dark-bg border border-white/5 hover:border-cyan-500 transition-all hover:-translate-y-2 group hover:shadow-neon">
+            <i data-lucide="map-pin" class="w-8 h-8 mx-auto text-cyan-400 mb-4 group-hover:scale-110 transition-transform"></i>
+            <h4 class="text-white font-semibold">Location</h4>
+            <p class="text-gray-400 text-sm mt-2">Sidoarjo, East Java</p>
+          </div>
         </div>
+        <!-- Simple Form Placeholder -->
+        <form class="max-w-xl mx-auto space-y-4 relative z-10">
+          <div class="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="Name" class="w-full bg-dark-bg border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+            <input type="email" placeholder="Email" class="w-full bg-dark-bg border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
+          </div>
+          <textarea rows="4" placeholder="Your Message" class="w-full bg-dark-bg border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"></textarea>
+          <button type="button" onclick="alert('Demo Mode: Message Sent Successfully!')" class="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] transform hover:scale-[1.02]"> Send Message </button>
+        </form>
+      </div>
     </section>
-
     <!-- Footer -->
     <footer class="bg-black py-8 border-t border-white/10 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-gray-500 font-tech text-sm">
-                &copy; 2025 Primula Juventauricula. <br class="md:hidden"> "Building the future, one line of code at a time."
-            </p>
-        </div>
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-gray-500 font-tech text-sm"> &copy; 2025 Primula Juventauricula. <br class="md:hidden"> "Building the future, one line of code at a time." </p>
+      </div>
     </footer>
-
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+      // Initialize Lucide Icons
+      lucide.createIcons();
+      // 1. Interactive Canvas Background (Network Particles)
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      let particles = [];
 
-        // 1. Interactive Canvas Background (Network Particles)
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-
-        function resizeCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+      }
+      class Particle {
+        constructor() {
+          this.x = Math.random() * width;
+          this.y = Math.random() * height;
+          this.vx = (Math.random() - 0.5) * 0.5;
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.size = Math.random() * 2 + 1;
         }
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(6, 182, 212, 0.5)';
-                ctx.fill();
-            }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          if (this.x < 0 || this.x > width) this.vx *= -1;
+          if (this.y < 0 || this.y > height) this.vy *= -1;
         }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < 80; i++) particles.push(new Particle());
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(6, 182, 212, 0.5)';
+          ctx.fill();
         }
+      }
 
-        let mouse = { x: null, y: null };
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
+      function initParticles() {
+        particles = [];
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+      }
+      let mouse = {
+        x: null,
+        y: null
+      };
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+      });
+
+      function animateCanvas() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+          // Connect particles close to each other
+          particles.forEach(p2 => {
+            let dx = p.x - p2.x;
+            let dy = p.y - p2.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 100) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 - distance/1000})`;
+              ctx.lineWidth = 0.5;
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          });
+          // Connect to mouse
+          if (mouse.x) {
+            let dx = p.x - mouse.x;
+            let dy = p.y - mouse.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 150) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(34, 211, 238, ${0.2 - distance/750})`;
+              ctx.lineWidth = 0.8;
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+            }
+          }
         });
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-                // Connect particles close to each other
-                particles.forEach(p2 => {
-                    let dx = p.x - p2.x;
-                    let dy = p.y - p2.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 - distance/1000})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                });
-                // Connect to mouse
-                if(mouse.x) {
-                    let dx = p.x - mouse.x;
-                    let dy = p.y - mouse.y;
-                    let distance = Math.sqrt(dx*dx + dy*dy);
-                    if (distance < 150) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(34, 211, 238, ${0.2 - distance/750})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.stroke();
-                    }
-                }
-            });
-            requestAnimationFrame(animateCanvas);
-        }
-
-        window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+        requestAnimationFrame(animateCanvas);
+      }
+      window.addEventListener('resize', () => {
         resizeCanvas();
         initParticles();
-        animateCanvas();
+      });
+      resizeCanvas();
+      initParticles();
+      animateCanvas();
+      // 2. Typewriter Effect
+      const roles = ["FULL STACK WEB DEVELOPER", "DATA ENGINEER", "SERVER ADMINISTRATOR"];
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const typeTarget = document.getElementById('typewriter');
 
-        // 2. Typewriter Effect
-        const roles = ["FULL STACK WEB DEVELOPER", "DATA ENGINEER", "SERVER ADMINISTRATOR"];
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typeTarget = document.getElementById('typewriter');
-
-        function type() {
-            const currentRole = roles[roleIndex];
-            if (isDeleting) {
-                typeTarget.textContent = currentRole.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typeTarget.textContent = currentRole.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentRole.length) {
-                isDeleting = true;
-                typeSpeed = 2000; // Pause at end
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(type, typeSpeed);
+      function type() {
+        const currentRole = roles[roleIndex];
+        if (isDeleting) {
+          typeTarget.textContent = currentRole.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typeTarget.textContent = currentRole.substring(0, charIndex + 1);
+          charIndex++;
         }
-        document.addEventListener('DOMContentLoaded', type);
-
-        // 3. Scroll Reveal & Skill Bar Animation
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    
-                    // Animate Skill Bars inside the revealed section
-                    const skillBars = entry.target.querySelectorAll('.skill-bar');
-                    skillBars.forEach(bar => {
-                        const targetWidth = bar.getAttribute('data-width');
-                        const fill = bar.querySelector('div div'); // The inner colored bar
-                        setTimeout(() => { fill.style.width = targetWidth; }, 300);
-                    });
-                }
+        let typeSpeed = isDeleting ? 50 : 100;
+        if (!isDeleting && charIndex === currentRole.length) {
+          isDeleting = true;
+          typeSpeed = 2000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          typeSpeed = 500;
+        }
+        setTimeout(type, typeSpeed);
+      }
+      document.addEventListener('DOMContentLoaded', type);
+      // 3. Scroll Reveal & Skill Bar Animation
+      const observerOptions = {
+        threshold: 0.1
+      };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Animate Skill Bars inside the revealed section
+            const skillBars = entry.target.querySelectorAll('.skill-bar');
+            skillBars.forEach(bar => {
+              const targetWidth = bar.getAttribute('data-width');
+              const fill = bar.querySelector('div div'); // The inner colored bar
+              setTimeout(() => {
+                fill.style.width = targetWidth;
+              }, 300);
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // 4. 3D Tilt Effect for Cards
-        document.querySelectorAll('.tilt-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -5; // Max -5deg to 5deg
-                const rotateY = ((x - centerX) / centerX) * 5;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-            });
+          }
         });
-
-        // Mobile Menu
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+      }, observerOptions);
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      // 4. 3D Tilt Effect for Cards
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -5; // Max -5deg to 5deg
+          const rotateY = ((x - centerX) / centerX) * 5;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                menu.classList.add('hidden');
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
         });
-
-        // Active Link Highlighting
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('text-cyan-400');
-                link.classList.add('text-gray-300'); // default
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('text-cyan-400');
-                    link.classList.remove('text-gray-300');
-                }
-            });
+      });
+      // Mobile Menu
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+      // Smooth Scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          menu.classList.add('hidden');
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
         });
+      });
+      // Active Link Highlighting
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 150) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('text-cyan-400');
+          link.classList.add('text-gray-300'); // default
+          if (link.getAttribute('href').includes(current)) {
+            link.classList.add('text-cyan-400');
+            link.classList.remove('text-gray-300');
+          }
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
