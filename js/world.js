@@ -21,7 +21,7 @@ addEventListener("touchstart", () => setTouchUI(true), { passive: true });
 /* ---------- Renderer ---------- */
 let renderer;
 try {
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: !lowPower, powerPreference: "high-performance",
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance",
     preserveDrawingBuffer: new URLSearchParams(location.search).has("debug") });
 } catch (e) {
   const d = document.createElement("div");
@@ -30,12 +30,16 @@ try {
   document.body.append(d);
   throw e;
 }
-renderer.setPixelRatio(Math.min(devicePixelRatio, lowPower ? 1.5 : 1.75));
+// Render sharp: phones get up to 2x density (they are 2-3x screens); auto-quality only steps down if really needed.
+const DPR_MAX = Math.min(devicePixelRatio, 2);
+const DPR_MIN = Math.min(DPR_MAX, coarse ? 1.5 : 1);
+renderer.setPixelRatio(DPR_MAX);
 renderer.setSize(innerWidth, innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.shadowMap.enabled = !lowPower;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = lowPower ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
 
+const MAX_ANISO = Math.min(8, renderer.capabilities.getMaxAnisotropy());
 const scene = new THREE.Scene();
 const FOG = 0xcfe6f7;
 scene.fog = new THREE.Fog(FOG, 90, 330);
@@ -116,7 +120,7 @@ function makeLabel(text, { size = 1, sub = "", bg = "rgba(255,255,255,0.92)", co
   if (sub) { ctx.font = subFont; ctx.fillStyle = "#5b6270"; ctx.fillText(sub, W / 2, 112); }
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
+  tex.anisotropy = MAX_ANISO;
   const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, fog: false, depthWrite: false }));
   const s = size * 0.012;
   sp.scale.set(W * s, H * s, 1);
@@ -130,7 +134,7 @@ const texLoader = new THREE.TextureLoader();
 function loadTex(url) {
   const t = texLoader.load(url);
   t.colorSpace = THREE.SRGBColorSpace;
-  t.anisotropy = 4;
+  t.anisotropy = MAX_ANISO;
   return t;
 }
 
@@ -165,7 +169,7 @@ sun.position.set(40, 60, 25);
 scene.add(sun, sun.target);
 if (renderer.shadowMap.enabled) {
   sun.castShadow = true;
-  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.mapSize.set(lowPower ? 1024 : 2048, lowPower ? 1024 : 2048);
   const sc = sun.shadow.camera;
   sc.left = sc.bottom = -32; sc.right = sc.top = 32; sc.near = 1; sc.far = 160;
   sun.shadow.bias = -0.0008;
@@ -189,7 +193,7 @@ function column(x, z, r, y0, y1, extra = {}) {
 const grassBlades = [];
 function sprinkleGrass(cx, cy, cz, r, density, avoid = [], seed = 1) {
   const rnd = rng(seed);
-  const n = Math.round(Math.PI * r * r * density * (lowPower ? 0.45 : 1));
+  const n = Math.round(Math.PI * r * r * density * (lowPower ? 0.65 : 1));
   for (let i = 0; i < n; i++) {
     const a = rnd() * TAU, d = Math.sqrt(rnd()) * (r - 0.4);
     const x = Math.cos(a) * d, z = Math.sin(a) * d;
@@ -1543,20 +1547,27 @@ async function init() {
 }
 let clouds;
 
-// Keep the frame rate up on slower machines: drop resolution, then shadows.
-const perf = { frames: 0, time: 0, dpr: renderer.getPixelRatio() };
-function adaptQuality(dt) {
+// Keep the frame rate up on slower machines, but never trade away sharpness early:
+// measure real frame times only once the world is in play, step resolution down gently,
+// stop at DPR_MIN on phones, and climb back up when there is headroom.
+const perf = { frames: 0, last: 0, start: 0, dpr: DPR_MAX, coolDown: 0, good: 0 };
+function adaptQuality() {
+  const now = performance.now();
+  if (state !== "play") { perf.start = 0; return; }
+  if (!perf.start) { perf.start = now; perf.last = now; perf.frames = 0; return; }
+  if (now - perf.start < 4000) { perf.last = now; perf.frames = 0; return; } // let shaders and textures warm up
   perf.frames++;
-  perf.time += dt;
-  if (perf.time < 2) return;
-  const fps = perf.frames / perf.time;
-  perf.frames = 0; perf.time = 0;
-  if (fps < 50 && perf.dpr > 1) {
-    perf.dpr = Math.max(1, perf.dpr - 0.25);
-    renderer.setPixelRatio(perf.dpr);
-  } else if (fps < 38 && sun.castShadow) {
-    sun.castShadow = false;
-  }
+  const span = now - perf.last;
+  if (span < 2500) return;
+  const fps = (perf.frames * 1000) / span;
+  perf.frames = 0; perf.last = now;
+  const set = (d) => { perf.dpr = d; renderer.setPixelRatio(d); };
+  if (fps < 40 && perf.dpr > DPR_MIN) { set(Math.max(DPR_MIN, perf.dpr - 0.25)); perf.coolDown = now + 10000; perf.good = 0; }
+  else if (fps < 30 && sun.castShadow) { sun.castShadow = false; perf.coolDown = now + 10000; }
+  else if (fps < 22 && perf.dpr > 1) { set(Math.max(1, perf.dpr - 0.25)); perf.coolDown = now + 10000; }
+  else if (fps > 55 && perf.dpr < DPR_MAX && now > perf.coolDown) {
+    if (++perf.good >= 2) { set(Math.min(DPR_MAX, perf.dpr + 0.25)); perf.good = 0; }
+  } else perf.good = 0;
 }
 
 const clock = new THREE.Clock();
@@ -1565,7 +1576,7 @@ const camLook = new THREE.Vector3();
 let elapsed = 0;
 function loop(_t, fixedDt) {
   const dt = fixedDt ?? Math.min(clock.getDelta(), 0.05);
-  if (fixedDt === undefined && !document.hidden) adaptQuality(dt);
+  if (fixedDt === undefined && !document.hidden) adaptQuality();
   elapsed += dt;
   grassMat.uniforms.uTime.value = elapsed;
   waterMat.uniforms.uTime.value = elapsed;
